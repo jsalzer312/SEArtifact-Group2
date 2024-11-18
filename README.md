@@ -11,10 +11,16 @@ In this replication package, we refer to the Buggy UI Localization as ```study_1
 # Getting Started
 This section contains the steps to set up the environment and reproduce the results of Buggy UI Localization tasks (study_1) and Buggy Code Localization experiments (study_2) of the paper. Note that study_1, i.e., Buggy UI Localization tasks (screen and component localization) are the main focus of the paper. All the experiments of study_1 can be replicated in 1 hour. However, replicating the results of study_2, i.e., Buggy Code Localization will take a while depending on the experiment. We already provided the results of all the experiments of both studies. Rerunning the experiments will overwrite the results.
 ## Setting up the Environment
-1. Install JDK 11+ and Apache Maven(3.6.3). Add both JDK and Maven to your PATH environment variable.
-2. Install Python 3.
-3. Install pip.
-4. Install required packages from requirements.txt file. Run the following command: ```pip install -r requirement.txt```
+* Run ```environment.sh``` for setting up your environment necessary to run the project with this command: ```sh environment.sh```
+  * Installs Java 11 SDK
+  * Installs Python3 3.10
+  * Installs Apache Maven (3.6.3)
+  * Adds JDK and Maven to your file path
+  * Installs pip
+  * Installs Python modules required for this artifact
+
+Note: If you already have a previous Python version installed, run ```python3 --version``` to see if you have the correct version of ```Python 3.10.12```. If not, change your Python version to 3.10.12
+
 ## Reproducing the Results of Buggy UI Localization (study_1) 
 1. Run ```run_cmnd.sh``` for reproducing the results with this command: ```sh run_cmnd.sh```. If you use windows, please create a similar script. This script will run all the experiments of Study 1. The experiments can be run within one hour using this script. For running each experiment separately, please comment out the commands of other experiments.
 2. The results will be stored in the ```results``` directory where ```SL``` folder will contain screen localization results and ```CL``` will contain component localization results. The results are already provided (as CSV files). Rerunning the experiments will overwrite the results.
