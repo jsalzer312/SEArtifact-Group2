@@ -3,8 +3,7 @@ import matplotlib.pyplot as plt
 import os
 import shutil
 
-pwd = os.getcwd()
-directory_path = pwd + '/study_1/results/graphs/sl'
+directory_path = '/home/alperenyazmaci/github/SEArtifact-Group2/study_1/results/graphs/sl'
 
 if os.path.exists(directory_path):
     shutil.rmtree(directory_path)
@@ -14,8 +13,8 @@ else:
 
 # File paths for data
 file_paths = {
-    "Cat": pwd + "/study_1/results/SL/Cat.csv",
-    "LUCENE": pwd + "/study_1/results/SL/LUCENE_results_details.csv"
+    "Cat": "/home/alperenyazmaci/github/SEArtifact-Group2/study_1/results/SL/Cat.csv",
+    "LUCENE": "/home/alperenyazmaci/github/SEArtifact-Group2/study_1/results/SL/LUCENE_results_details.csv"
 }
 
 custom_line_names = {
@@ -85,7 +84,7 @@ line_graph_data = process_data_for_line_graph(cat_data)
 bar_graph_data = process_data_for_bar_graph(cat_data)
 
 # Ensure output directory exists
-output_dir = pwd + "/study_1/results/graphs/sl"
+output_dir = "/home/alperenyazmaci/github/SEArtifact-Group2/study_1/results/graphs/sl"
 os.makedirs(output_dir, exist_ok=True)
 
 # Plot line graph
