@@ -5,7 +5,8 @@ import numpy as np
 
 import os
 
-file_path = '/home/alperenyazmaci/github/SEArtifact-Group2/study_1/results/graphs/summary_bar_graph.png'
+pwd = os.getcwd()
+file_path = pwd + '/study_1/results/graphs/summary_bar_graph.png'
 
 # Check if the file exists
 if os.path.exists(file_path):
@@ -16,7 +17,7 @@ else:
 
 
 # Read the Excel file
-file_path = '/home/alperenyazmaci/github/SEArtifact-Group2/study_1/results/result_summary.xlsx'
+file_path = pwd + '/study_1/results/result_summary.xlsx'
 data = pd.read_excel(file_path)
 
 # Columns to keep for the X-axis (h@1 to h@10)
@@ -48,7 +49,7 @@ plt.legend(title='Experiment Names', loc='best', fontsize=10)
 plt.grid(axis='y')
 
 # Ensure the output directory exists
-output_dir = '/home/alperenyazmaci/github/SEArtifact-Group2/study_1/results/graphs'  # Replace with your desired directory
+output_dir = pwd + '/study_1/results/graphs'  # Replace with your desired directory
 os.makedirs(output_dir, exist_ok=True)
 
 # Save plot as an image and display it

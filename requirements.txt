@@ -50,3 +50,4 @@ tzdata==2024.1
 urllib3==2.2.2
 xmldict==0.4.1
 xmltodict==0.13.0
+matplotlib==3.9.2
