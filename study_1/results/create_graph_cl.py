@@ -15,7 +15,7 @@ else:
 # File paths for data
 file_paths = {
     "Cat": pwd + "/study_1/results/CL/Cat.csv",
-    "LUCENE": pwd + "/study_1/results/CL/LUCENE_results_details.csv"
+    "LUCENE": pwd + "/study_1/results/CL/LUCENE_results_with_details.csv"
 }
 
 custom_line_names = {
