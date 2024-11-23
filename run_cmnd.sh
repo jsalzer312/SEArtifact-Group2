@@ -64,3 +64,8 @@ python3 study_1/blip/component_localization.py
 python3 study_1/results/create_fine_grained_results.py
 python3 study_1/results/add_synthetic_bugs_column.py
 python3 study_1/results/create_results_summary.py
+## Result Graph Generation
+## -----------------------
+python3 study_1/results/create_results_summary_graph.py
+python3 study_1/results/create_graph_cl.py
+python3 study_1/results/create_graph_sl.py
