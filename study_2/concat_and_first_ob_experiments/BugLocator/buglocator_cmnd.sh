@@ -12,6 +12,9 @@ export filtering_list=("GUI_States" "All_GUI_Component_IDs" "GUI_State_and_All_G
 export boosting_list=("GUI_States" "All_GUI_Component_IDs" "GUI_State_and_All_GUI_Component_IDs")
 export query_reformulation_list=("GUI_States" "All_GUI_Component_IDs" "GUI_State_and_All_GUI_Component_IDs")
 
+# Runs realpath command, finds and stores full path to be used in all required file paths
+FULL_PATH=$(realpath .)
+
 # shellcheck disable=SC2068
 for exp_name in ${exp_names[@]}; do
   if [[ $exp_name == "Concat-OB-3-Screens" ]]; then
@@ -26,7 +29,7 @@ for exp_name in ${exp_names[@]}; do
 
   export prep_data_dir=../data/PreprocessedData/BugLocatorQuery-$exp_name
   # TODO: Copy the absolute path of FilteredBoostedProjects folder and replace it in the filtered_boosted_files_in_repo variable. Keep the "/$exp_name" at the end.
-  export filtered_boosted_files_in_repo=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/concat_and_first_ob_experiments/FilteredBoostedProjects/$exp_name
+  export filtered_boosted_files_in_repo=$FULL_PATH/study_2/concat_and_first_ob_experiments/FilteredBoostedProjects/$exp_name
   export temp_data_dir=temp_xml_dir
   export temp_result_dir=results
 
@@ -35,7 +38,7 @@ for exp_name in ${exp_names[@]}; do
   mkdir $final_ranks_folder
 
   # TODO: Copy the absolute path of FilteredUnfilteredFiles folder and replace it in the filtered_boosted_filenames variable. Keep the "/$exp_name" at the end.
-  export filtered_boosted_filenames=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/concat_and_first_ob_experiments/FilteredUnfilteredFiles/$exp_name
+  export filtered_boosted_filenames=$FULL_PATH/study_2/concat_and_first_ob_experiments/FilteredUnfilteredFiles/$exp_name
 
   # For Filtering and boosting
    for i in ${!filtering_list[@]}; do
