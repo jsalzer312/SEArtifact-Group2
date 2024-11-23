@@ -2,6 +2,7 @@
 export JAVA_HOME=$(/usr/libexec/java_home)
 mvn package -DskipTests
 
+
 : '
 List of experiments:
 1. Concat-OB-3-Screens: Conduct Bug Localization (Study 2) using top 3 screens from Buggy UI Localization (Study 1) with concat OB
@@ -11,6 +12,9 @@ List of experiments:
 '
 
 exp_names=("Concat-OB-3-Screens" "Concat-OB-4-Screens" "First-OB-3-Screens" "First-OB-4-Screens")
+
+# Runs realpath command, finds and stores full path to be used in all required file paths
+FULL_PATH=$(realpath .)
 
 # shellcheck disable=SC2068
 for exp_name in ${exp_names[@]}; do
@@ -38,21 +42,21 @@ for exp_name in ${exp_names[@]}; do
         corpus_type=GUI_State_and_All_GUI_Component_IDs
         if [[ "${model_name}" == "BugLocator" ]]; then
           # TODO: Copy the absolute path of study_2/data/BugReportsContents and replace it in the bug_reports_folder variable
-          bug_reports_folder=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/BugReportsContents
+          bug_reports_folder=$FULL_PATH/study_2/data/BugReportsContents
         elif [[ "${model_name}" == "LUCENE" ]]; then
           # TODO: Copy the absolute path of study_2/data/BugReports and replace it in the bug_reports_folder variable
-          bug_reports_folder=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/BugReports
+          bug_reports_folder=$FULL_PATH/study_2/data/BugReports
         fi
 
         # TODO: Copy the absolute path of FilteredUnfilteredFiles folder and replace it in the query_infos_file variable. Keep the "/$exp_name" at the end.
-        query_infos_file=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/concat_and_first_ob_experiments/FilteredUnfilteredFiles/$exp_name
+        query_infos_file=$FULL_PATH/study_2/concat_and_first_ob_experiments/FilteredUnfilteredFiles/$exp_name
 
         if [[ "${model_name}" == "BugLocator" ]]; then
           # TODO: Copy the absolute path of study_2/data/PreprocessedData and replace it in the preprocessed_query_folder variable. Keep the "/$exp_name/Content" at the end.
-          preprocessed_query_folder=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/PreprocessedData/$exp_name/Content
+          preprocessed_query_folder=$FULL_PATH/study_2/data/PreprocessedData/$exp_name/Content
         elif [[ "${model_name}" == "LUCENE" ]]; then
           # TODO: Copy the absolute path of study_2/data/PreprocessedData and replace it in the preprocessed_query_folder variable. Keep the "/$exp_name/Query" at the end.
-          preprocessed_query_folder=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/PreprocessedData/$exp_name/Query
+          preprocessed_query_folder=$FULL_PATH/study_2/data/PreprocessedData/$exp_name/Query
         fi
         rm -rf ${preprocessed_query_folder}
         mkdir -p ${preprocessed_query_folder}
@@ -66,9 +70,9 @@ for exp_name in ${exp_names[@]}; do
       elif [[ "${content_type}" == "Title" ]];
       then
         # TODO: Copy the absolute path of study_2/data/BugReportsTitles and replace it in the bug_reports_titles variable.
-        bug_reports_titles=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/BugReportsTitles
+        bug_reports_titles=$FULL_PATH/study_2/data/BugReportsTitles
         # TODO: Copy the absolute path of study_2/data/PreprocessedData and replace it in the preprocessed_title_folder variable. Keep the "/$exp_name/Title" at the end.
-        preprocessed_titles_folder=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/PreprocessedData/$exp_name/Title
+        preprocessed_titles_folder=$FULL_PATH/study_2/data/PreprocessedData/$exp_name/Title
         rm -rf ${preprocessed_titles_folder}
         mkdir -p ${preprocessed_titles_folder}
 
@@ -80,11 +84,11 @@ for exp_name in ${exp_names[@]}; do
       elif [[ "${content_type}" == "Code" ]];
       then
         # TODO: Copy the absolute path of study_2/data/PreprocessedData and replace it in the preprocessed_code_folder variable. Keep the "/$exp_name/Code" at the end.
-        preprocessed_code_folder=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/PreprocessedData/$exp_name/Code
+        preprocessed_code_folder=$FULL_PATH/study_2/data/PreprocessedData/$exp_name/Code
         rm -rf ${preprocessed_code_folder}
         mkdir -p ${preprocessed_code_folder}
         # TODO: Copy the absolute path of data/BuggyProjects and replace it in the buggy_projects variable.
-        buggy_projects=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/BuggyProjects
+        buggy_projects=$FULL_PATH/study_2/data/BuggyProjects
 
         "$JAVA_HOME/bin/java" -cp target/code_search_ir-1.0.jar MainClass \
           -preq ${preprocessed_code_folder} -bp ${buggy_projects}\

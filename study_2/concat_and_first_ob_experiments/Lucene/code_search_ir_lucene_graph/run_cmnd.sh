@@ -10,17 +10,19 @@ List of experiments:
 '
 
 exp_names=("Concat-OB-3-Screens" "Concat-OB-4-Screens" "First-OB-3-Screens" "First-OB-4-Screens")
+# Runs realpath command, finds and stores full path to be used in all required file paths
+FULL_PATH=$(realpath .)
 
 export filtering_list=("GUI_States" "All_GUI_Component_IDs" "GUI_State_and_All_GUI_Component_IDs")
 export boosting_list=("GUI_States" "All_GUI_Component_IDs" "GUI_State_and_All_GUI_Component_IDs")
 export query_reformulation_list=("GUI_States" "All_GUI_Component_IDs" "GUI_State_and_All_GUI_Component_IDs")
 
 # TODO: Copy the absolute path of study_2/data/JSON-Files-All and replace it in the jsonFilePath variable
-export jsonFilePath=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/JSON-Files-All
+export jsonFilePath=$FULL_PATH/study_2/data/JSON-Files-All
 # TODO: Copy the absolute path of study_2/data/BuggyProjects and replace it in the buggy_project_dir variable
-export buggy_project_dir=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/BuggyProjects
+export buggy_project_dir=$FULL_PATH/study_2/data/BuggyProjects
 # TODO: Copy the absolute path of study_2/data/BuggyProjects and replace it in the preprocessed_code_dir variable
-export preprocessed_code_dir=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/BuggyProjects
+export preprocessed_code_dir=$FULL_PATH/study_2/data/BuggyProjects
 
 # shellcheck disable=SC2068
 for exp_name in ${exp_names[@]}; do
@@ -35,11 +37,11 @@ for exp_name in ${exp_names[@]}; do
   fi
 
   # TODO: Copy the absolute path of study_2/data/PreprocessedData and replace it in the preprocessedDataPath variable. Keep the "/$exp_name/Query" at the end.
-  export preprocessedDataPath=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/PreprocessedData/$exp_name/Query
+  export preprocessedDataPath=$FULL_PATH/study_2/data/PreprocessedData/$exp_name/Query
   # TODO: Copy the absolute path of study_2/data/PreprocessedData and replace it in the preprocessedCodePath variable. Keep the "/$exp_name/Code" at the end.
-  export preprocessedCodePath=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/data/PreprocessedData/$exp_name/Code
+  export preprocessedCodePath=$FULL_PATH/study_2/data/PreprocessedData/$exp_name/Code
   # TODO: Copy the absolute path of FilteredBoostedProjects folder and replace it in the filtered_boosted_files_in_repo variable. Keep the "/$exp_name" at the end.
-  export filtered_boosted_files_in_repo=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/concat_and_first_ob_experiments/FilteredBoostedProjects/$exp_name
+  export filtered_boosted_files_in_repo=$FULL_PATH/study_2/concat_and_first_ob_experiments/FilteredBoostedProjects/$exp_name
   export result_folder=../../results/$exp_name
   rm -rf $result_folder
   mkdir $result_folder
@@ -47,7 +49,7 @@ for exp_name in ${exp_names[@]}; do
   rm -rf $final_ranks_folder
   mkdir $final_ranks_folder
   # TODO: Copy the absolute path of FilteredUnfilteredFiles folder and replace it in the filtered_boosted_filenames variable. Keep the "/$exp_name" at the end.
-  export filtered_boosted_filenames=/Volumes/Education/GitHub/Toward-Automating-the-Localization-of-Buggy-UIs-Anonymized/study_2/concat_and_first_ob_experiments/FilteredUnfilteredFiles/$exp_name
+  export filtered_boosted_filenames=$FULL_PATH/study_2/concat_and_first_ob_experiments/FilteredUnfilteredFiles/$exp_name
 
   # For Boosting
   for j in ${!boosting_list[@]}; do
