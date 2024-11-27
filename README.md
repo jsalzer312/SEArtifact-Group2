@@ -10,19 +10,83 @@ In this replication package, we refer to the Buggy UI Localization as ```study_1
 
 # Getting Started
 This section contains the steps to set up the environment and reproduce the results of Buggy UI Localization tasks (study_1) and Buggy Code Localization experiments (study_2) of the paper. Note that study_1, i.e., Buggy UI Localization tasks (screen and component localization) are the main focus of the paper. All the experiments of study_1 can be replicated in 1 hour. However, replicating the results of study_2, i.e., Buggy Code Localization will take a while depending on the experiment. We already provided the results of all the experiments of both studies. Rerunning the experiments will overwrite the results.
+
+## Video Demonstration For Running Study 1
+[![Video demonstration for running study 1](https://img.youtube.com/vi/BUs4XUPkoyg/0.jpg)](https://www.youtube.com/watch?v=BUs4XUPkoyg)
+
+
 ## Setting up the Environment
-1. Install JDK 11+ and Apache Maven(3.6.3). Add both JDK and Maven to your PATH environment variable.
-2. Install Python 3.
-3. Install pip.
-4. Install required packages from requirements.txt file. Run the following command: ```pip install -r requirement.txt```
-## Reproducing the Results of Buggy UI Localization (study_1) 
-1. Run ```run_cmnd.sh``` for reproducing the results with this command: ```sh run_cmnd.sh```. If you use windows, please create a similar script. This script will run all the experiments of Study 1. The experiments can be run within one hour using this script. For running each experiment separately, please comment out the commands of other experiments.
-2. The results will be stored in the ```results``` directory where ```SL``` folder will contain screen localization results and ```CL``` will contain component localization results. The results are already provided (as CSV files). Rerunning the experiments will overwrite the results.
-3. The results summary will be saved in ```study_1/results/results_summary.xlsx``` file. The file is already provided. Rerunning the script will overwrite the results summary.
+
+Note: Use Linux or MacOS to run this project. If you are on Windows, we recommend you to use WSL
+
+
+  * Run ```environment.sh``` for setting up your environment necessary to run the project with this command: ```sh environment.sh```
+    * Installs Java 11 JDK
+    * Installs Python 3.10
+    * Installs Apache Maven (3.6.3)
+    * Adds JDK and Maven to your file path
+    * Installs pip
+    * Installs Python modules required for this artifact
+
+Note: If you already have a previous Python version installed, run ```python3 --version``` to see if you have the correct version of ```Python 3.10.12```. If not, change your Python version to 3.10.12
+
+## Reproducing the Results of Buggy UI Localization (study_1)
+
+Note: study_1_fix_issues.sh only works for Linux or MacOS users
+1. Run ```study_1_fix_issues.sh``` to fix all the issues for the project with this command: ```sh environment.sh```
+* ```study_1_fix_issues.sh``` resolves:
+  * Adds missing dependencies to pom.xml (commons-io, commons-cli, org.slf4j, Stanford CoreNLP)
+  * Downloads all required dependencies
+  * Fixes wrong file paths mentioned in the repository
+  * Fixes CUDA function with GPU used for CLIP testing
+
+2. Run ```run_cmnd.sh``` for reproducing the results with this command: ```sh run_cmnd.sh```. If you use windows, please create a similar script. This script will run all the experiments of Study 1. The experiments can be run within one hour using this script. For running each experiment separately, please comment out the commands of other experiments.
+3. The results will be stored in the ```results``` directory where ```SL``` folder will contain screen localization results and ```CL``` will contain component localization results. The results are already provided (as CSV files). Rerunning the experiments will overwrite the results.
+4. The results summary will be saved in ```study_1/results/results_summary.xlsx``` file. The file is already provided. Rerunning the script will overwrite the results summary.
+5. Performance comparing different models using different metrics (h@k, MAP, MRR) are stored in ```study_1/results/graphs```.
 ## Reproducing the Results of Buggy Code Localization (study_2)
-1. Please follow the instructions provided in the ```study_2/concat_and_first_ob_experiments/README.md``` to reproduce the results of CONCAT_OB and FIRST_OB experiments of study_2.
-2. Please follow the instructions provided in the ```study_2/individual_ob_experiments/README.md``` to reproduce the results of INDIVIDUAL_OB experiments of study_2.
-3. The results of all the experiments will be stored in the ```study_2/FinalResults``` directory and the results summary will be stored in ```study_2/ResultsSummary``` directory. The results are already provided (as CSV and xlsx files). Rerunning the experiments will overwrite the results.
+
+1. Go to `study_2/concat_and_first_ob_experiments/Lucene/code_search_ir_preprocess_data/pom.xml` and add the additional dependencies shown below
+
+```
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.11.0</version>
+</dependency>
+<dependency>
+    <groupId>commons-cli</groupId>
+    <artifactId>commons-cli</artifactId>
+    <version>1.4</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.lucene</groupId>
+    <artifactId>lucene-core</artifactId>
+    <version>5.3.0</version>
+</dependency>
+<dependency>
+    <groupId>edu.stanford.nlp</groupId>
+    <artifactId>stanford-corenlp</artifactId>
+    <version>3.8.0</version> <!-- Or the version you're using -->
+</dependency>
+<dependency>
+    <groupId>edu.stanford.nlp</groupId>
+    <artifactId>stanford-corenlp</artifactId>
+    <version>3.8.0</version>
+    <classifier>models</classifier>
+</dependency>
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-simple</artifactId>
+    <version>1.7.32</version>
+</dependency>
+```
+
+
+2. Please follow the instructions provided in the ```study_2/concat_and_first_ob_experiments/README.md``` to reproduce the results of CONCAT_OB and FIRST_OB experiments of study_2.
+3. Please follow the instructions provided in the ```study_2/individual_ob_experiments/README.md``` to reproduce the results of INDIVIDUAL_OB experiments of study_2.
+4. The results of all the experiments will be stored in the ```study_2/FinalResults``` directory and the results summary will be stored in ```study_2/ResultsSummary``` directory. The results are already provided (as CSV and xlsx files). Rerunning the experiments will overwrite the results.
+
 # Detailed Description
 This section contains the detailed description of the directories and files in this repository. It also contains the information of the experiments of the two studies and instructions to run the experiments.
 ## study_1: Buggy UI Localization
@@ -100,3 +164,12 @@ Besides the above directories, this repository contains the following files:
 2. ```requirements.txt``` contains the required packages to run the experiments.
 3. ```run_cmnd.sh``` is an automated script to run all the experiments of study_1. The experiments can be run in one hour using this script.
 4. ```readme.md``` is the current file that contains the detailed description of the directories and files in this repository. This file also contains the instructions to set up the environment and reproduce the results of the Buggy UI Localization tasks (Study 1).
+
+# Results
+This section contains pictures for the produced results of this study
+## Results for Study 1
+![MRR by Approach and OB-Category For CL](./study_1/results/graphs/cl/bar_graph.png)
+![MAP by OB-Rating For CL](./study_1/results/graphs/cl/line_graph.png)
+![MRR by Approach and OB-Category For SL](./study_1/results/graphs/sl/bar_graph.png)
+![MAP by OB-Rating For SL](./study_1/results/graphs/sl/line_graph.png)
+![result_summary](image.png)

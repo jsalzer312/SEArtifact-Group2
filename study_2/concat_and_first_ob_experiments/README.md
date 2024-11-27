@@ -8,7 +8,7 @@ This directory contains all the necessary codes to reproduce the buggy code loca
 # How to reproduce results of all 4 experiments?
 ## Prerequisites
 1. Install JDK 11+ and Apache Maven(3.6.3). Add both JDK and Maven to your PATH environment variable.
-2. Update the paths (provide the absolute paths) of the following code files (paths can be identified by TODO comments):
+2. Run `sh study_2_fix_issues.sh` to update all the necessary file paths for this study. Alternatively, you can manually update the paths by providing the absolute paths of the following code files (paths can be identified by TODO comments):
     * ```SourceCodeMapping/MappingAndroidProject/get_filtered_unfiltered_files.py```
     * ```SourceCodeMapping/MappingAndroidProject/read_files.py```
     * ```study_2/concat_and_first_ob_experiments/ShortScripts/match_files_from_repo.sh```
